@@ -2,8 +2,8 @@ let qp = `https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&ap
 const url = require("url");
 const needle = require("needle");
 require("dotenv").config();
-const { directGeocoding } = require("../../utils/geocoding.js");
-const { urlConstructor } = require("../../utils/urlOperations.js");
+const { directGeocoding } = require("../../utils/geocodingFunctions.js");
+const { urlConstructor } = require("../../utils/urlFunctions.js");
 
 /* Route Controllers */
 const getCityGeoLocations = async (req, res) => {
