@@ -2,8 +2,18 @@ let qp = `https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&ap
 const url = require("url");
 const needle = require("needle");
 require("dotenv").config();
-const { directGeocoding } = require("../../utils/geocoding.js");
-const { urlConstructor } = require("../../utils/urlOperations.js");
+const { directGeocoding } = require("../../utils/geocodingFunctions.js");
+const { urlConstructor } = require("../../utils/urlFunctions.js");
+
+const getWeatherConditionIcon = async (iconCode) => {
+  const iconUrl = `http://openweathermap.org/img/wn/${iconCode}@2x.png`;
+  try {
+    const icon = await needle("get", iconUrl);
+    return icon;
+  } catch (err) {
+    return "weather icon";
+  }
+};
 
 /* Route Controllers */
 const getCityGeoLocations = async (req, res) => {
@@ -27,11 +37,14 @@ const getCityCurrentFocast = async (req, res) => {
     const response = await needle("get", urlString);
     const { state } = req.query;
     const { weather, main, name, cod } = response.body;
+    const icon = await getWeatherConditionIcon(weather[0].icon);
     return res.status(cod).json({
       weather,
+      icon,
       main,
       name,
       state,
+      id,
       cod,
     });
   } catch (err) {

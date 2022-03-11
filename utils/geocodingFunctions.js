@@ -1,6 +1,6 @@
 const needle = require("needle");
 const url = require("url");
-const { urlConstructor } = require("./urlOperations.js");
+const { urlConstructor } = require("./urlFunctions.js");
 require("dotenv").config();
 
 const directGeocoding = async (query) => {
