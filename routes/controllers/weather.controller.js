@@ -31,6 +31,7 @@ const getCityCurrentFocast = async (req, res) => {
   const urlString = urlConstructor(process.env.OPEN_WEATHER_FOCAST_URL, {
     [process.env.OPEN_WEATHER_APP]: process.env.OPEN_WEATHER_KEY,
     ...url.parse(req.url, true).query,
+    unit: metric,
   });
 
   try {
