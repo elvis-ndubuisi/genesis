@@ -9,9 +9,10 @@ const getCityGeoLocations = async (req, res) => {
   const data = await directGeocoding(req.url);
 
   if (data.cod === 400 || data.length < 1) {
-    return res
-      .status(400)
-      .json({ message: "Data didn't Match or No Data to geocode" });
+    return res.status(400).json({
+      message: "Data didn't Match or No Data to geocode",
+      status: 400,
+    });
   }
   res.status(200).send(data);
 };
