@@ -5,6 +5,16 @@ require("dotenv").config();
 const { directGeocoding } = require("../../utils/geocodingFunctions.js");
 const { urlConstructor } = require("../../utils/urlFunctions.js");
 
+const getWeatherConditionIcon = async (iconCode) => {
+  const iconUrl = `http://openweathermap.org/img/wn/${iconCode}@2x.png`;
+  try {
+    const icon = await needle("get", iconUrl);
+    return icon;
+  } catch (err) {
+    return "weather icon";
+  }
+};
+
 /* Route Controllers */
 const getCityGeoLocations = async (req, res) => {
   const data = await directGeocoding(req.url);
@@ -27,11 +37,14 @@ const getCityCurrentFocast = async (req, res) => {
     const response = await needle("get", urlString);
     const { state } = req.query;
     const { weather, main, name, cod } = response.body;
+    const icon = await getWeatherConditionIcon(weather[0].icon);
     return res.status(cod).json({
       weather,
+      icon,
       main,
       name,
       state,
+      id,
       cod,
     });
   } catch (err) {
