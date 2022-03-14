@@ -49,7 +49,9 @@ const getDayHourForecast = async (req, res) => {
     const response = await needle("get", urlString);
     const { list, city } = response.body;
     res.status(200).json({ list, city });
-  } catch (err) {}
+  } catch (err) {
+    res.send(err);
+  }
 };
 
 module.exports = {

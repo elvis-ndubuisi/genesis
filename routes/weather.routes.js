@@ -8,6 +8,6 @@ const {
 
 router.get("/api/locations", getCityGeoLocations);
 router.get("/api/forecast", getCityCurrentForecast);
-router.get("/api/forecast/day", getDayHourForecast);
+router.get("/api/forecast/dayhour", getDayHourForecast);
 
 module.exports = router;
