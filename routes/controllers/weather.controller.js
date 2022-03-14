@@ -37,7 +37,23 @@ const getCityCurrentForecast = async (req, res) => {
   }
 };
 
+const getDayHourForecast = async (req, res) => {
+  const urlString = urlConstructor(process.env.OPEN_WEATHER_DAY_FORECAST_URL, {
+    [process.env.OPEN_WEATHER_APP]: process.env.OPEN_WEATHER_KEY,
+    ...url.parse(req.url, true).query,
+    units: "metric",
+    cnt: 5,
+  });
+
+  try {
+    const response = await needle("get", urlString);
+    const { list, city } = response.body;
+    res.status(200).json({ list, city });
+  } catch (err) {}
+};
+
 module.exports = {
   getCityGeoLocations,
   getCityCurrentForecast,
+  getDayHourForecast,
 };

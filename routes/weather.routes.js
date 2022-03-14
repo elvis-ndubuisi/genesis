@@ -3,9 +3,11 @@ const router = require("express").Router();
 const {
   getCityGeoLocations,
   getCityCurrentForecast,
+  getDayHourForecast,
 } = require("./controllers/weather.controller.js");
 
 router.get("/api/locations", getCityGeoLocations);
 router.get("/api/forecast", getCityCurrentForecast);
+router.get("/api/forecast/day", getDayHourForecast);
 
 module.exports = router;
