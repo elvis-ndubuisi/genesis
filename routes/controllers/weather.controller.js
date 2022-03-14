@@ -17,8 +17,8 @@ const getCityGeoLocations = async (req, res) => {
   res.status(200).send(data);
 };
 
-const getCityCurrentFocast = async (req, res) => {
-  const urlString = urlConstructor(process.env.OPEN_WEATHER_FOCAST_URL, {
+const getCityCurrentForecast = async (req, res) => {
+  const urlString = urlConstructor(process.env.OPEN_WEATHER_FORECAST_URL, {
     [process.env.OPEN_WEATHER_APP]: process.env.OPEN_WEATHER_KEY,
     ...url.parse(req.url, true).query,
     units: "metric",
@@ -39,5 +39,5 @@ const getCityCurrentFocast = async (req, res) => {
 
 module.exports = {
   getCityGeoLocations,
-  getCityCurrentFocast,
+  getCityCurrentForecast,
 };
