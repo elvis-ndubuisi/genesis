@@ -4,7 +4,7 @@ const { urlConstructor } = require("./urlFunctions.js");
 require("dotenv").config();
 
 const directGeocoding = async (query) => {
-  /* Implement on the OPEN WEATHER MAP GEOCODING API */
+  /* Using the OPEN WEATHER MAP GEOCODING API */
 
   const queryString = urlConstructor(process.env.OPEN_WEATHER_GEO_URL, {
     [process.env.OPEN_WEATHER_APP]: process.env.OPEN_WEATHER_KEY,
