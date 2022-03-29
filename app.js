@@ -1,13 +1,13 @@
 const cors = require("cors");
+const corsOpt = require("./config/corsOpt.config.js");
 const express = require("express");
 const helmet = require("helmet");
 
+const app = express();
 const weatherRoute = require("./routes/api/weather.routes.js");
 
-const app = express();
-
 app.use(helmet());
-app.use(cors());
+app.use(cors(corsOpt));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
