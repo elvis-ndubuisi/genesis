@@ -1,8 +1,8 @@
 const url = require("url");
 const needle = require("needle");
 require("dotenv").config();
-const { directGeocoding } = require("../../utils/geocodingFunctions.js");
-const { urlConstructor } = require("../../utils/urlFunctions.js");
+const { directGeocoding } = require("../utils/geocodingFunctions.js");
+const { urlConstructor } = require("../utils/urlFunctions.js");
 
 /* Route Controllers */
 const getCityGeoLocations = async (req, res) => {
