@@ -4,7 +4,7 @@ const {
   getCityGeoLocations,
   getCityCurrentForecast,
   getDayHourForecast,
-} = require("./controllers/weather.controller.js");
+} = require("../../controllers/weather.controller.js");
 
 router.get("/api/locations", getCityGeoLocations);
 router.get("/api/forecast", getCityCurrentForecast);

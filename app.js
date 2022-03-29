@@ -2,7 +2,7 @@ const cors = require("cors");
 const express = require("express");
 const helmet = require("helmet");
 
-const weatherRoute = require("./routes/weather.routes.js");
+const weatherRoute = require("./routes/api/weather.routes.js");
 
 const app = express();
 
