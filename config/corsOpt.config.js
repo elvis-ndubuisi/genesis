@@ -1,7 +1,6 @@
 let whiteList = [
   "http://localhost:3000",
   "http://localhost:5000",
-  "https://genesis-weather-app.herokuapp.com",
   "https://weathercasta.netlify.app",
 ];
 
