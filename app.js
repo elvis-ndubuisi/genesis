@@ -5,6 +5,7 @@ const helmet = require("helmet");
 
 const app = express();
 const weatherRoute = require("./routes/api/weather.routes.js");
+const nasaRoute = require("./routes/api/nasa.routes.js");
 
 app.use(helmet());
 app.use(cors(corsOpt));
