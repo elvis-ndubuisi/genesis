@@ -6,8 +6,8 @@ const {
   getDayHourForecast,
 } = require("../../controllers/weather.controller.js");
 
-router.get("/api/weather/locations", getCityGeoLocations);
-router.get("/api/weather/forecast", getCityCurrentForecast);
-router.get("/api/weather/forecast/dayhour", getDayHourForecast);
+router.get("/weather/locations", getCityGeoLocations);
+router.get("/weather/forecast", getCityCurrentForecast);
+router.get("/weather/forecast/dayhour", getDayHourForecast);
 
 module.exports = router;

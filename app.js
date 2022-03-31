@@ -12,7 +12,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Routes.
-app.use("/weather", weatherRoute);
+app.use("/api", weatherRoute);
+app.use("/api", nasaRoute);
 
 app.get("/", (req, res) => {
   res.send("home index");
