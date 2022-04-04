@@ -48,7 +48,17 @@ const getNEO = async (req, res) => {
     Expectation: returns a list of the closest NEOs to the date specified.
     Query params: start_date, end_date, limit
    */
-  const { startDate, endDate } = req.query;
+
+  const { startDate, endDate } = req.body;
+
+  // if no query params are received.
+  if (req.body === {}) {
+    return res.status(406).json({
+      success: false,
+      reason:
+        "No query params received. Please specify a start date and end date.",
+    });
+  }
   const urlString = urlConstructor(URL_NEO, {
     [process.env.NASA_API]: process.env.NASA_API_KEY,
     ...url.parse(req.url, true).query,
@@ -59,6 +69,14 @@ const getNEO = async (req, res) => {
   try {
     const response = await needle("get", urlString);
     const { element_count, near_earth_objects } = response.body;
+    // if bad request.
+    if (response.body?.error_message) {
+      return res.status(406).json({
+        success: false,
+        reason: response.body.error_message,
+      });
+    }
+
     res.status(200).json({ success: true, element_count, near_earth_objects });
   } catch (err) {
     console.error(err);
