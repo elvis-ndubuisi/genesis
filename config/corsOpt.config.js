@@ -2,6 +2,7 @@ let whiteList = [
   "http://localhost:3000",
   "http://localhost:5000",
   "https://weathercasta.netlify.app",
+  "https://spacematador.netlify.app",
 ];
 
 // Rest tools and server-to-server requests are blocked by default.
