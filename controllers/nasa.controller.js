@@ -49,10 +49,10 @@ const getNEO = async (req, res) => {
     Query params: start_date
    */
 
-  const { startDate } = req.body;
+  const { startDate } = req.query;
 
   // if no query params are received.
-  if (!req.body) {
+  if (!req.query) {
     console.log("No query params received");
     return res.status(406).json({
       success: false,
