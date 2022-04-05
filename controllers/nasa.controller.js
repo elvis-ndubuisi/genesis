@@ -52,8 +52,7 @@ const getNEO = async (req, res) => {
   const { startDate } = req.body;
 
   // if no query params are received.
-  if (!req.body) {
-    console.log("No query params received");
+  if (req.body === {}) {
     return res.status(406).json({
       success: false,
       reason:
@@ -84,6 +83,7 @@ const getNEO = async (req, res) => {
         };
       });
     });
+
     // if bad request.
     if (response.body?.error_message) {
       return res.status(406).json({
