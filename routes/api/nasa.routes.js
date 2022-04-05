@@ -6,7 +6,7 @@ const {
 } = require("../../controllers/nasa.controller.js");
 
 router.get("/nasa/apod", getAPOD);
-router.post("/nasa/neo", getNEO);
+router.get("/nasa/neo", getNEO);
 router.get("/nasa/eonet", getEONET);
 
 module.exports = router;
