@@ -46,10 +46,10 @@ const getAPOD = async (req, res) => {
 const getNEO = async (req, res) => {
   /*
     Expectation: returns a list of the closest NEOs to the date specified.
-    Query params: start_date, end_date, limit
+    Query params: start_date
    */
 
-  const { startDate, endDate } = req.body;
+  const { startDate } = req.body;
 
   // if no query params are received.
   if (req.body === {}) {
@@ -63,12 +63,27 @@ const getNEO = async (req, res) => {
     [process.env.NASA_API]: process.env.NASA_API_KEY,
     ...url.parse(req.url, true).query,
     start_date: startDate,
-    end_date: endDate,
+    limit: 3,
   });
 
   try {
     const response = await needle("get", urlString);
     const { element_count, near_earth_objects } = response.body;
+
+    const neoList = Object.keys(near_earth_objects).map((date) => {
+      return near_earth_objects[date].map((neo) => {
+        return {
+          name: neo.name,
+          id: neo.id,
+          is_potentially_hazardous_asteroid:
+            neo.is_potentially_hazardous_asteroid,
+          absolute_magnitude_h: neo.absolute_magnitude_h,
+          estimated_diameter: neo.estimated_diameter,
+          close_approach_data: neo.close_approach_data,
+        };
+      });
+    });
+
     // if bad request.
     if (response.body?.error_message) {
       return res.status(406).json({
@@ -77,7 +92,7 @@ const getNEO = async (req, res) => {
       });
     }
 
-    res.status(200).json({ success: true, element_count, near_earth_objects });
+    res.status(200).json({ success: true, element_count, neoList });
   } catch (err) {
     console.error(err);
     res.status(500).json({ success: false, reason: err });
