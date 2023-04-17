@@ -1,1 +1,11 @@
-node_modules
+# Dependencies
+/node_modules
+
+# Build
+./build
+
+# APIs & Secrets
+.env
+
+# Local files
+ideas.md
