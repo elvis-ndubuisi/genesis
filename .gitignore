@@ -1,11 +1,13 @@
-# Dependencies
 /node_modules
+.env*
 
-# Build
-./build
+# Build folder
+/dist
+/build
 
-# APIs & Secrets
-.env
+# Logs
+*.log
+/logs
 
-# Local files
+# locals
 ideas.md
