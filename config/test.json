@@ -1,0 +1,7 @@
+{
+    "port": 8080,
+    "mongoDb": {
+        "Name": "genesis",
+        "Uri": "mongodb://localhost:27017"
+    }
+}
