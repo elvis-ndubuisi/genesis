@@ -2,22 +2,37 @@ import { Request, Response } from "express";
 
 import logger from "../../helpers/logger";
 import { createNftSchema, CreateNftInput, loginUserSchema, LoginUserInput } from "../../schemas/cryptoket.schemas";
-import { createUser } from "../../services/crytpoket.services";
+import { createUser, findUserByName } from "../../services/crytpoket.services";
 
 export async function userRegister(req: Request<{}, {}, LoginUserInput>, res: Response) {
     try {
-        const user = await createUser(req.body);
+        await createUser(req.body);
         res.status(201).send("You successfully registered");
     } catch (error: any) {
         if (error?.code === 11000) {
             return res.status(409).send("Account already exists");
         }
 
-        res.status(400).send(error?.message);
+        res.status(500).send(error?.message);
     }
 }
 
-export async function userLogin(req: Request<{}, {}, LoginUserInput>, res: Response) {}
+export async function userLogin(req: Request<{}, {}, LoginUserInput>, res: Response) {
+    const { username, password } = req.body;
+    try {
+        const user = await findUserByName(username);
+
+        if (!user) return res.status(401).send("Invalid username or password");
+
+        const isValid = await user.checkPassword(password);
+        if (!isValid) return res.status(401).send("Invalid username or password");
+
+        // Sign tokens
+        res.send("tokens");
+    } catch (error: any) {
+        res.status(500).send("Something went wrong");
+    }
+}
 
 export async function createNft(req: Request, res: Response) {}
 

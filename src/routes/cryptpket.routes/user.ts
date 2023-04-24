@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.post("/auth/join", validateResource(loginUserSchema), userRegister);
 
-router.post("auth/login", validateResource(loginUserSchema), userLogin);
+router.post("/auth/login", validateResource(loginUserSchema), userLogin);
 
 router.get("profile", () => {});
 
