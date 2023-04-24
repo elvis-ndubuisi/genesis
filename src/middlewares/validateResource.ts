@@ -13,7 +13,7 @@ const validateResource = (schema: AnyZodObject) => (req: Request, res: Response,
         schema.parse({ body: req.body, params: req.params, query: req.query });
         next();
     } catch (error: any) {
-        logger.error(error?.message);
+        logger.debug(error?.message);
         return res.status(400).send(error?.message);
     }
 };
