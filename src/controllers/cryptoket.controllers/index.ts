@@ -34,10 +34,18 @@ export async function userLogin(req: Request<{}, {}, LoginUserInput>, res: Respo
     }
 }
 
-export async function createNft(req: Request, res: Response) {}
+export async function createNft(req: Request<CreateNftInput>, res: Response) {
+    res.send("create nft");
+}
 
-export async function fetchNfts(req: Request, res: Response) {}
+export async function fetchNfts(req: Request, res: Response) {
+    res.send("fetch nfts");
+}
 
-export async function fetchNft(req: Request, res: Response) {}
+export async function fetchNft(req: Request, res: Response) {
+    res.send("fetch single nft details");
+}
 
-export async function fetchUserNfts(req: Request, res: Response) {}
+export async function fetchUserNfts(req: Request, res: Response) {
+    res.send("fetch user nfts");
+}

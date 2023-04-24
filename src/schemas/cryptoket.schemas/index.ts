@@ -12,6 +12,7 @@ export const loginUserSchema = object({
 
 export const createNftSchema = object({
     body: object({
+        image: string({ required_error: "Nft item must be provided" }),
         name: string({ required_error: "Nft name must be provided" }),
         description: string({ required_error: "Provide a description" })
             .min(60, "Minimum of 60 characters is required")
