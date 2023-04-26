@@ -1,4 +1,4 @@
-import { prop, getModelForClass, index } from "@typegoose/typegoose";
+import { prop, getModelForClass } from "@typegoose/typegoose";
 
 export class Employee {
     @prop({ required: true })
@@ -10,7 +10,7 @@ export class Employee {
     @prop({ required: true, lowercase: true })
     email!: string;
 
-    @prop({})
+    @prop()
     phone!: string;
 
     @prop()
