@@ -1,3 +1,12 @@
 {
-    "dbName": "genesis"
+    "mongoDb": {
+        "Name": "genesis",
+        "Uri": "mongodb://localhost:27017"
+    },
+    "host": {
+        "cryptoket": "https://cryptoket-nft.vercel.app",
+        "salesprit": "https://salesprit.vercel.app"
+    },
+    "accessTokenExp": "30m",
+    "refreshTokenExp": "2d"
 }

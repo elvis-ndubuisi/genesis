@@ -2,6 +2,12 @@
     "port": 8080,
     "mongoDb": {
         "Name": "genesis",
-        "Uri": "mongodb://localhost:27017"
-    }
+        "Uri": "MONGODB_URI"
+    },
+    "host": {
+        "cryptoket": "http://localhost:3000",
+        "salesprit": "http://localhost:3000"
+    },
+    "accessTokenExp": "30s",
+    "refreshTokenExp": "10m"
 }

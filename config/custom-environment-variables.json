@@ -1,1 +1,12 @@
-{}
+{
+    "mongoUri": "MONGODB_URI",
+    "accessTokenPrivateKey": "ACCESS_PRIVATE_KEY",
+    "accessTokenPublicKey": "ACCESS_PUBLIC_KEY",
+    "refreshTokenPrivateKey": "REFRESH_PRIVATE_KEY",
+    "refreshTokenPublicKey": "REFRESH_PUBLIC_KEY",
+    "cloudinary": {
+        "name": "CLOUDINARY_NAME",
+        "key": "CLOUDINARY_API_KEY",
+        "secret": "CLOUDINARY_API_SECRET"
+    }
+}
