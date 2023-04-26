@@ -1,27 +1,35 @@
-import { TypeOf, object, string } from "zod";
+import { TypeOf, object, string, number } from "zod";
 
-export const createProfile = object({
+export const registerUserSchema = object({
     body: object({
-        email: string(),
-        password: string(),
-        confirmPassword: string(),
+        email: string({ required_error: "Email is required" }),
+        password: string({ required_error: "Password is required" }).min(6, "Minium of 6 characters is required"),
+        confirmPassword: string({ required_error: "Confirm password is required" }),
+    }).refine((data) => data.password === data.confirmPassword, {
+        message: "Passwords do not match",
+        path: ["confirmPassword"],
     }),
 });
 
-export const editProfile = object({
+export const editUserProfileSchema = object({
     body: object({
         firstname: string(),
         lassname: string(),
-        email: string(),
+        email: string().email("Not a valid email"),
         phone: string(),
-        dob: string(),
+        dob: string().datetime("Date format not recognized"),
         position: string(),
     }),
-    params: object({
-        userId: string(),
+});
+
+export const loginUserSchema = object({
+    body: object({
+        email: string({ required_error: "Email is required" }).email("Invalid email"),
+        password: string({ required_error: "Password is required" }),
     }),
 });
 
 /* Export types */
-export type CreateProfile = TypeOf<typeof createProfile>["body"];
-export type EditProfile = TypeOf<typeof editProfile>["body" | "params"];
+export type RegisterUserInput = TypeOf<typeof registerUserSchema>["body"];
+export type EditUserProfileInput = TypeOf<typeof editUserProfileSchema>["body"];
+export type LoginUserInput = TypeOf<typeof loginUserSchema>["body"];

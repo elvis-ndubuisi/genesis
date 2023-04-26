@@ -1,11 +1,21 @@
-import { object, string, TypeOf } from "zod";
+import { object, string, TypeOf, number } from "zod";
 
-const addEmployee = object({
-    body: object({
-        firstname: string({ required_error: "First name is required" }),
-        lastname: string({ required_error: "last name is required" }),
-        email: string({ required_error: "Email is required" }).email({ message: "Invalid email" }),
-        gender: string({ required_error: "Please specify your gender" }),
-        role: string({ required_error: "Please specify a role" }),
+export const deleteEmployeeSchema = object({
+    params: object({
+        employeeId: string({ required_error: "No id provided" }),
     }),
 });
+
+export const addEmployeeSchema = object({
+    body: object({
+        firstname: string({ required_error: "Please provide employee's first name" }),
+        lastname: string({ required_error: "Please provide employee's last name" }),
+        email: string({ required_error: "Please provide employee's email address" }).email("Email is not valid"),
+        mobile: number({ required_error: "Please provide employee's mobile number" }),
+        gender: string({ required_error: "Please provide employee's gender" }),
+        role: string({ required_error: "Please provide employee's role" }),
+    }),
+});
+
+export type DeleteEmployeeInput = TypeOf<typeof deleteEmployeeSchema>["params"];
+export type AddEmployeeInput = TypeOf<typeof addEmployeeSchema>["body"];
