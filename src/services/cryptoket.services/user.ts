@@ -9,6 +9,10 @@ export function findUserByNameService(payload: string) {
     return UserModel.findOne({ username: payload });
 }
 
+export function findUserByIdService(id: string) {
+    return UserModel.findById(id);
+}
+
 export function loginUserService(payload: Required<User>) {
     return "strong";
 }
