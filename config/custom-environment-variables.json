@@ -4,6 +4,8 @@
     "accessTokenPublicKey": "ACCESS_PUBLIC_KEY",
     "refreshTokenPrivateKey": "REFRESH_PRIVATE_KEY",
     "refreshTokenPublicKey": "REFRESH_PUBLIC_KEY",
+    "jwtAccessSecret": "JWT_ACCESS_SECRET",
+    "jwtRefreshSecret": "JWT_REFRESH_SECRET",
     "cloudinary": {
         "name": "CLOUDINARY_NAME",
         "key": "CLOUDINARY_API_KEY",

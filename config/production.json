@@ -3,7 +3,7 @@
         "Name": "genesis",
         "Uri": "mongodb://localhost:27017"
     },
-    "host": {
+    "origin": {
         "cryptoket": "https://cryptoket-nft.vercel.app",
         "salesprit": "https://salesprit.vercel.app"
     },

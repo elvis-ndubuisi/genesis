@@ -2,9 +2,9 @@
     "port": 8080,
     "mongoDb": {
         "Name": "genesis",
-        "Uri": "MONGODB_URI"
+        "Uri": "mongodb://localhost:27017"
     },
-    "host": {
+    "origin": {
         "cryptoket": "http://localhost:3000",
         "salesprit": "http://localhost:3000"
     },
