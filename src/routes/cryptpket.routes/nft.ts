@@ -1,14 +1,14 @@
 import express from "express";
 
 import validateResource from "../../middlewares/validateResource";
-import { createNft, fetchNfts, fetchNft } from "../../controllers/cryptoket.controllers";
+import { createNftHandler, fetchNftsHandler, fetchNftHandler } from "../../controllers/cryptoket.controllers";
 
 const router = express.Router();
 
-router.get("/nft", fetchNft);
+router.get("/", fetchNftHandler);
 
-router.post("/nft/create", createNft);
+router.post("/create", createNftHandler);
 
-router.get("/nft/nfts", fetchNfts);
+router.get("/nfts", fetchNftsHandler);
 
 export default router;

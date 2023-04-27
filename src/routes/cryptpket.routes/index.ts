@@ -5,7 +5,7 @@ import nftRoutes from "./nft";
 
 const router = express.Router();
 
-router.use("/cryptoket", userRoutes);
-router.use("/cryptoket", nftRoutes);
+router.use("/user", userRoutes);
+router.use("/nft", nftRoutes);
 
 export default router;
