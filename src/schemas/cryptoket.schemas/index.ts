@@ -1,4 +1,4 @@
-import { object, string, TypeOf, number } from "zod";
+import { object, string, TypeOf, number, any } from "zod";
 
 export const loginUserSchema = object({
     body: object({
@@ -12,13 +12,12 @@ export const loginUserSchema = object({
 
 export const createNftSchema = object({
     body: object({
-        image: string({ required_error: "Nft item must be provided" }),
         name: string({ required_error: "Nft name must be provided" }),
         description: string({ required_error: "Provide a description" })
-            .min(60, "Minimum of 60 characters is required")
-            .max(80, "Maximum of 100 characters is allowed"),
-        price: number({ required_error: "Price a price for your product" }),
-        type: string({ required_error: "NFT type is required" }),
+            .min(10, "Minimum of 10 characters is required")
+            .max(80, "Maximum of 80 characters is allowed"),
+        price: string({ required_error: "Price a price for your product" }),
+        cryptoType: string({ required_error: "NFT type is required" }),
     }),
 });
 
