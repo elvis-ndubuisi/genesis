@@ -2,6 +2,8 @@ import { prop, getModelForClass, modelOptions, Severity, pre, DocumentType } fro
 import argon2 from "argon2";
 import logger from "../../helpers/logger";
 
+export const privateFields = ["password", "checkPassword"];
+
 @pre<User>("save", async function () {
     if (!this.isModified("password")) return; /* If password isn't modified */
     const hash = await argon2.hash(this.password);

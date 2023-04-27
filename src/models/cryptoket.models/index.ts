@@ -1,3 +1,3 @@
-import { User, UserModel } from "./User";
+import { User, UserModel, privateFields } from "./User";
 
-export { User, UserModel };
+export { User, UserModel, privateFields };
