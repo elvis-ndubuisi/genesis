@@ -21,5 +21,12 @@ export const createNftSchema = object({
     }),
 });
 
+export const fetchNftSchema = object({
+    params: object({
+        nftId: string({ required_error: "Can't query without identifier" }),
+    }),
+});
+
 export type LoginUserInput = TypeOf<typeof loginUserSchema>["body"];
 export type CreateNftInput = TypeOf<typeof createNftSchema>["body"];
+export type FetchNftInput = TypeOf<typeof fetchNftSchema>["params"];
