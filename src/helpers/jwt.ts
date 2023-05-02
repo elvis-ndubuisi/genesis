@@ -28,7 +28,7 @@ export function signJwt(
  */
 export function verifyJwt<T>(
     token: string,
-    keyName: "accessTokenPublicKey" | "refreshTokenPublicKey" | "jwtRefreshSecret"
+    keyName: "accessTokenPublicKey" | "refreshTokenPublicKey" | "jwtRefreshSecret" | "jwtAccessSecret"
 ): T | null {
     const publicKey = config.get<string>(keyName);
 
