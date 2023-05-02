@@ -7,6 +7,9 @@ cloudinary.v2.config({
     api_secret: config.get("cloudinary.secret"),
 });
 
-export default function cloudinaryService(file: string, options: { folder: string; id?: string }) {
-    return cloudinary.v2.uploader.upload(file, { folder: `genesis/${options.folder}`, public_id: "id" });
+export default function cloudinaryService(file: string, options: { folder?: string }) {
+    return cloudinary.v2.uploader.upload(file, {
+        folder: options.folder ? `genesis/${options.folder}` : "genesis",
+        use_filename: true,
+    });
 }
