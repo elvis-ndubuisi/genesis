@@ -8,6 +8,6 @@
         "cryptoket": "http://localhost:3000",
         "salesprit": "http://localhost:3000"
     },
-    "accessTokenExp": "30s",
-    "refreshTokenExp": "10m"
+    "accessTokenExp": "30m",
+    "refreshTokenExp": "1h"
 }
