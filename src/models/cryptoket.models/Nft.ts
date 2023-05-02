@@ -8,7 +8,7 @@ export const nftPrivateFields = ["_v"];
     options: { allowMixed: Severity.ALLOW },
 })
 export class Nft {
-    @prop({ required: true, trim: true, lowercase: true })
+    @prop({ required: true, trim: true, lowercase: true, unique: true })
     name!: string;
 
     @prop({ required: true, trim: true })

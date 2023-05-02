@@ -24,6 +24,7 @@ async function createNftHandler(req: Request<{}, {}, CreateNftInput>, res: Respo
         });
     } catch (error: any) {
         logger.debug(error);
+        if (error?.code === 11000) return res.status(409).send("Nft name already exists");
         res.status(500).json(error);
     }
 }
