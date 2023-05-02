@@ -1,10 +1,11 @@
-import { prop, getModelForClass, modelOptions, Ref } from "@typegoose/typegoose";
+import { prop, getModelForClass, modelOptions, Ref, Severity } from "@typegoose/typegoose";
 import { User } from ".";
 
 export const nftPrivateFields = ["_v"];
 
 @modelOptions({
     schemaOptions: { timestamps: true },
+    options: { allowMixed: Severity.ALLOW },
 })
 export class Nft {
     @prop({ required: true, trim: true, lowercase: true })
@@ -19,8 +20,8 @@ export class Nft {
     @prop()
     cryptoType!: string;
 
-    @prop()
-    uri!: string;
+    @prop({ required: true })
+    nftImage!: { resource_type: string; url: string; secure_url: string; format: string; created_at: string };
 
     @prop({ ref: () => User })
     author!: Ref<User>;

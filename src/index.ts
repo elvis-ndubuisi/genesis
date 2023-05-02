@@ -17,7 +17,7 @@ connectToMongo();
 app.use(helmet());
 app.use(cookieParser());
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(routes);
 
 app.listen(PORT, () => logger.info(`server started on ${PORT}`));
