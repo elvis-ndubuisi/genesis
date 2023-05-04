@@ -4,11 +4,9 @@ import multerUpload from "../../middlewares/multerUpload";
 import authUser from "../../middlewares/authUser";
 import deserializeCryptoUser from "../../middlewares/deserializeCrypto";
 import { createNftHandler, fetchNftsHandler, fetchNftHandler } from "../../controllers/cryptoket.controllers";
-import { createNftSchema, fetchNftSchema } from "../../schemas/cryptoket.schemas";
+import { createNftSchema, fetchNftSchema, fetchNftsSchema } from "../../schemas/cryptoket.schemas";
 
 const router = express.Router();
-
-router.get("/", deserializeCryptoUser, authUser, fetchNftHandler);
 
 router.post(
     "/create",
@@ -19,8 +17,8 @@ router.post(
     createNftHandler
 );
 
-router.get("/nft", deserializeCryptoUser, authUser, fetchNftsHandler);
+router.get("/", deserializeCryptoUser, authUser, validateResource(fetchNftsSchema), fetchNftsHandler);
 
-router.get("/nft/:id", deserializeCryptoUser, authUser, validateResource(fetchNftSchema), () => {});
+router.get("/:id", deserializeCryptoUser, authUser, fetchNftHandler);
 
 export default router;

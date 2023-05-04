@@ -27,6 +27,21 @@ export const fetchNftSchema = object({
     }),
 });
 
+export const fetchNftsSchema = object({
+    query: object({
+        page: string({ required_error: "Provide pagination page number" }),
+        size: string({ required_error: "Provide a payload size" }).optional(),
+    }),
+});
+
+export const refreshTokenSchema = object({
+    body: object({
+        refreshToken: string({ required_error: "Missing token" }),
+    }),
+});
+
 export type LoginUserInput = TypeOf<typeof loginUserSchema>["body"];
 export type CreateNftInput = TypeOf<typeof createNftSchema>["body"];
 export type FetchNftInput = TypeOf<typeof fetchNftSchema>["params"];
+export type FetchNftsInput = TypeOf<typeof fetchNftsSchema>["query"];
+export type RefreshTokenInput = TypeOf<typeof refreshTokenSchema>["body"];

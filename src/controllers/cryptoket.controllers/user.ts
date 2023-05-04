@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import logger from "../../helpers/logger";
-import { LoginUserInput } from "../../schemas/cryptoket.schemas";
+import { LoginUserInput, RefreshTokenInput } from "../../schemas/cryptoket.schemas";
 import { createUserService, findUserByNameService, findUserByIdService } from "../../services/cryptoket.services";
 import { signCryptoAccessTokenService, signCryptoRefreshTokenService } from "../../services/auth.services";
 import { verifyJwt } from "../../helpers/jwt";
@@ -38,8 +38,8 @@ export async function userLoginHandler(req: Request<{}, {}, LoginUserInput>, res
     }
 }
 
-export async function userRefreshTokenHandler(req: Request, res: Response) {
-    const refreshToken = req.headers["authorization"]?.split(" ")[1] as string;
+export async function userRefreshTokenHandler(req: Request<{}, {}, RefreshTokenInput>, res: Response) {
+    const refreshToken = req.body.refreshToken;
 
     const decoded = verifyJwt<{ userId: string }>(refreshToken, "jwtRefreshSecret");
 

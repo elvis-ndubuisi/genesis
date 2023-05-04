@@ -5,9 +5,9 @@
         "Uri": "mongodb://localhost:27017"
     },
     "origin": {
-        "cryptoket": "http://localhost:3000",
-        "salesprit": "http://localhost:3000"
+        "cryptoket": "http://localhost:5173",
+        "salesprit": "http://localhost:5173"
     },
-    "accessTokenExp": "30m",
-    "refreshTokenExp": "1h"
+    "accessTokenExp": "30s",
+    "refreshTokenExp": "30m"
 }

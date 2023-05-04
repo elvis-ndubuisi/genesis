@@ -8,5 +8,5 @@
         "salesprit": "https://salesprit.vercel.app"
     },
     "accessTokenExp": "30m",
-    "refreshTokenExp": "2d"
+    "refreshTokenExp": "1d"
 }
