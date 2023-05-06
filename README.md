@@ -18,7 +18,7 @@ Platform / User specific actions
 
 ## **Challenges**
 
-- **📁 Folder structuring** : Since `Genesis` is supposed to serve as backend to all [my porfolil]("") projects, structuring each project raised several challenges.
+- **📁 Folder structuring** : Since `Genesis` is supposed to serve as backend to all [my porfolil]("") projects, structuring each project raised several challenges and navigating between folders wasn't the best experience for me.
   - I either have to group all scripts to their respective folders and use a naming convention like `user.model.cryptoket.ts`
   - Each function relating to a project could be grouped into a separate sub-folder and exported using an `index.ts`
 
