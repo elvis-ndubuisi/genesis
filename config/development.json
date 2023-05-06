@@ -8,6 +8,6 @@
         "cryptoket": "http://localhost:5173",
         "salesprit": "http://localhost:5173"
     },
-    "accessTokenExp": "30s",
+    "accessTokenExp": "10m",
     "refreshTokenExp": "30m"
 }

@@ -1,13 +1,13 @@
 import argon2 from "argon2";
 import { getModelForClass, DocumentType, prop, pre } from "@typegoose/typegoose";
 
-@pre<User>("save", async function () {
+@pre<SalesUser>("save", async function () {
     if (!this.isModified("password")) return;
     const hash = await argon2.hash(this.password);
     this.password = hash;
     return;
 })
-export class User {
+export class SalesUser {
     @prop({ trim: true })
     firstname!: string;
 
@@ -30,7 +30,7 @@ export class User {
     position!: string;
 
     //#region User schema class methods
-    async comparePassword(self: DocumentType<User>, incomingPassword: string) {
+    async comparePassword(self: DocumentType<SalesUser>, incomingPassword: string) {
         try {
             return await argon2.verify(self.password, incomingPassword);
         } catch (error: any) {
@@ -40,5 +40,5 @@ export class User {
     //#endregion
 }
 
-const UserModel = getModelForClass(User);
-export default UserModel;
+const SalesUserModel = getModelForClass(SalesUser);
+export default SalesUserModel;

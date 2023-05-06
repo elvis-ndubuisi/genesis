@@ -1,5 +1,5 @@
-import { User, UserModel } from "../../models/salesprit.models";
+import { SalesUser, SalesUserModel } from "../../models/salesprit.models";
 
-export function createUserService(user: Partial<User>) {
-    return UserModel.create(user);
+export function createUserService(user: Partial<SalesUser>) {
+    return SalesUserModel.create(user);
 }

@@ -1,5 +1,5 @@
-import UserModel, { User } from "./user";
-import EmployeeModel, { Employee } from "./employee";
-import ProductModel, { Product } from "./product";
+import SalesUserModel, { SalesUser } from "./user";
+import SalesProductModel, { SalesProduct } from "./product";
+import SalesEmployeeModel, { SalesEmployee } from "./employee";
 
-export { User, UserModel, Employee, EmployeeModel, Product, ProductModel };
+export { SalesEmployee, SalesEmployeeModel, SalesProduct, SalesProductModel, SalesUser, SalesUserModel };

@@ -1,6 +1,6 @@
 import { prop, getModelForClass } from "@typegoose/typegoose";
 
-export class Employee {
+export class SalesEmployee {
     @prop({ required: true })
     firstname!: string;
 
@@ -20,5 +20,5 @@ export class Employee {
     role?: string;
 }
 
-const EmployeeModel = getModelForClass(Employee);
-export default EmployeeModel;
+const SalesEmployeeModel = getModelForClass(SalesEmployee);
+export default SalesEmployeeModel;

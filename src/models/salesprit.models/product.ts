@@ -1,6 +1,6 @@
 import { getModelForClass, prop } from "@typegoose/typegoose";
 
-export class Product {
+export class SalesProduct {
     @prop({ required: true, lowercase: true, trim: true })
     productName!: string;
 
@@ -11,5 +11,5 @@ export class Product {
     rating?: number;
 }
 
-const ProductModel = getModelForClass(Product);
-export default ProductModel;
+const SalesProductModel = getModelForClass(SalesProduct);
+export default SalesProductModel;
