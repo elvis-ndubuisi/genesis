@@ -6,8 +6,9 @@ import {
     userLoginHandler,
     userRegisterHandler,
     userRefreshTokenHandler,
+    userNftsHandler,
 } from "../../controllers/cryptoket.controllers";
-import { loginUserSchema, refreshTokenSchema, fetchNftSchema } from "../../schemas/cryptoket.schemas";
+import { loginUserSchema, refreshTokenSchema, fetchUserNftsSchema } from "../../schemas/cryptoket.schemas";
 import deserializeUser from "../../middlewares/deserializeCrypto";
 
 const router = express.Router();
@@ -15,8 +16,6 @@ const router = express.Router();
 router.post("/auth/join", validateResource(loginUserSchema), userRegisterHandler);
 router.post("/auth/login", validateResource(loginUserSchema), userLoginHandler);
 router.post("/auth/refresh", validateResource(refreshTokenSchema), userRefreshTokenHandler);
-router.get("/nft", validateResource(fetchNftSchema), deserializeUser, () => {});
-
-router.get("/profile", deserializeCryptoUser, authUser, () => {});
+router.get("/nft", deserializeCryptoUser, authUser, validateResource(fetchUserNftsSchema), userNftsHandler);
 
 export default router;

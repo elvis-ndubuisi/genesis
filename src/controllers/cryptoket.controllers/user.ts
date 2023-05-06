@@ -1,7 +1,12 @@
 import { Request, Response } from "express";
 import logger from "../../helpers/logger";
-import { LoginUserInput, RefreshTokenInput } from "../../schemas/cryptoket.schemas";
-import { createUserService, findUserByNameService, findUserByIdService } from "../../services/cryptoket.services";
+import { LoginUserInput, RefreshTokenInput, FetchUserNftsInput } from "../../schemas/cryptoket.schemas";
+import {
+    createUserService,
+    findUserByNameService,
+    findUserByIdService,
+    fetchUserNftsService,
+} from "../../services/cryptoket.services";
 import { signCryptoAccessTokenService, signCryptoRefreshTokenService } from "../../services/auth.services";
 import { verifyJwt } from "../../helpers/jwt";
 
@@ -51,4 +56,23 @@ export async function userRefreshTokenHandler(req: Request<{}, {}, RefreshTokenI
 
     const accessToken = signCryptoAccessTokenService(user);
     res.status(200).json({ accessToken });
+}
+
+export async function userNftsHandler(
+    req: Request<FetchUserNftsInput["params"], {}, {}, FetchUserNftsInput["query"]>,
+    res: Response
+) {
+    const page = parseInt(req.query.page) === 0 ? 1 : parseInt(req.query.page);
+    const size = req.query.size ? parseInt(req.query.size) : 4;
+
+    const limit = size;
+    const skip = (page - 1) * size; /* Number to document to skip */
+
+    try {
+        const nfts = await fetchUserNftsService(req.params.userId, { limit: limit, skip: skip });
+        res.status(200).send(nfts);
+    } catch (error) {
+        logger.error(error);
+        res.sendStatus(500);
+    }
 }

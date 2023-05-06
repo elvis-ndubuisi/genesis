@@ -40,8 +40,19 @@ export const refreshTokenSchema = object({
     }),
 });
 
+export const fetchUserNftsSchema = object({
+    params: object({
+        userId: string({ required_error: "Missing user Identifier" }),
+    }),
+    query: object({
+        page: string({ required_error: "Page size required" }),
+        size: string({ required_error: "Provide page data size" }).optional(),
+    }),
+});
+
 export type LoginUserInput = TypeOf<typeof loginUserSchema>["body"];
 export type CreateNftInput = TypeOf<typeof createNftSchema>["body"];
 export type FetchNftInput = TypeOf<typeof fetchNftSchema>["params"];
 export type FetchNftsInput = TypeOf<typeof fetchNftsSchema>["query"];
 export type RefreshTokenInput = TypeOf<typeof refreshTokenSchema>["body"];
+export type FetchUserNftsInput = TypeOf<typeof fetchUserNftsSchema>;

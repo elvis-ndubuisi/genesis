@@ -1,4 +1,4 @@
-import { userLoginHandler, userRefreshTokenHandler, userRegisterHandler } from "./user";
+import { userLoginHandler, userRefreshTokenHandler, userRegisterHandler, userNftsHandler } from "./user";
 import { createNftHandler, fetchNftsHandler, fetchNftHandler } from "./nft";
 
 export {
@@ -8,4 +8,5 @@ export {
     createNftHandler,
     fetchNftsHandler,
     fetchNftHandler,
+    userNftsHandler,
 };

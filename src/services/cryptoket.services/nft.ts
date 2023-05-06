@@ -22,7 +22,7 @@ export function fetchUserNftsService(authorId: string, { limit, skip }: { limit:
         .limit(limit)
         .skip(skip)
         .sort({ createdAt: "desc" })
-        .select("name price cryptoType nftImage.secure_url")
+        .select("name price cryptoType nftImage.secure_url description")
         .lean();
 }
 
