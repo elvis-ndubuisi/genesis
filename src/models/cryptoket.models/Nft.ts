@@ -23,7 +23,7 @@ export class Nft {
     @prop({ required: true })
     nftImage!: { resource_type: string; url: string; secure_url: string; format: string; created_at: string };
 
-    @prop({ ref: () => User })
+    @prop({ ref: () => User, required: true })
     author!: Ref<User>;
 }
 

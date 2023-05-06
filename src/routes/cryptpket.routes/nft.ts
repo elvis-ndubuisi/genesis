@@ -19,6 +19,6 @@ router.post(
 
 router.get("/", deserializeCryptoUser, authUser, validateResource(fetchNftsSchema), fetchNftsHandler);
 
-router.get("/:id", deserializeCryptoUser, authUser, fetchNftHandler);
+router.get("/id/:nftId", deserializeCryptoUser, authUser, validateResource(fetchNftSchema), fetchNftHandler);
 
 export default router;

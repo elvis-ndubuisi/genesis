@@ -26,6 +26,6 @@ export function fetchUserNftsService(authorId: string, { limit, skip }: { limit:
         .lean();
 }
 
-export function createNftService(nft: Partial<Nft>) {
-    return NftModel.create(nft);
+export function createNftService(nft: Partial<Nft>, authorId: string) {
+    return NftModel.create({ ...nft, author: authorId });
 }

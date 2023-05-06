@@ -5,19 +5,23 @@ import { fetchNftByIdService, createNftService, fetchNftsService } from "../../s
 import { CreateNftInput, FetchNftsInput, FetchNftInput } from "../../schemas/cryptoket.schemas";
 
 async function createNftHandler(req: Request<{}, {}, CreateNftInput>, res: Response) {
+    const author = res.locals.user._id;
     try {
-        if (!req.file) return res.send("no file");
+        if (!req.file) return res.json({ message: "No image file" });
         const cloudUri = await cloudinaryService(req.file.path, { folder: "cryptoket" });
-        const nft = await createNftService({
-            ...req.body,
-            nftImage: {
-                created_at: cloudUri.created_at,
-                format: cloudUri.format,
-                resource_type: cloudUri.resource_type,
-                secure_url: cloudUri.secure_url,
-                url: cloudUri.url,
+        const nft = await createNftService(
+            {
+                ...req.body,
+                nftImage: {
+                    created_at: cloudUri.created_at,
+                    format: cloudUri.format,
+                    resource_type: cloudUri.resource_type,
+                    secure_url: cloudUri.secure_url,
+                    url: cloudUri.url,
+                },
             },
-        });
+            author
+        );
         res.status(201).json({
             message: "Nft created successfully",
             data: nft,
@@ -54,10 +58,11 @@ async function fetchNftsHandler(req: Request<{}, {}, {}, FetchNftsInput>, res: R
 
 async function fetchNftHandler(req: Request<FetchNftInput, {}>, res: Response) {
     try {
+        console.log(req.params.nftId);
         const nft = await fetchNftByIdService(req.params.nftId);
-        res.send(nft);
+        res.status(200).json({ nft });
     } catch (error: any) {
-        logger.error(error);
+        // logger.error(error);
         res.sendStatus(500);
     }
 }

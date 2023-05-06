@@ -16,6 +16,6 @@ const router = express.Router();
 router.post("/auth/join", validateResource(loginUserSchema), userRegisterHandler);
 router.post("/auth/login", validateResource(loginUserSchema), userLoginHandler);
 router.post("/auth/refresh", validateResource(refreshTokenSchema), userRefreshTokenHandler);
-router.get("/nft", deserializeCryptoUser, authUser, validateResource(fetchUserNftsSchema), userNftsHandler);
+router.get("/nft/:userId", deserializeCryptoUser, authUser, validateResource(fetchUserNftsSchema), userNftsHandler);
 
 export default router;

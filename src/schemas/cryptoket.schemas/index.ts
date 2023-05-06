@@ -23,7 +23,7 @@ export const createNftSchema = object({
 
 export const fetchNftSchema = object({
     params: object({
-        nftId: string({ required_error: "Can't query without identifier" }),
+        nftId: string({ required_error: "Can't query without NFT identifier" }),
     }),
 });
 
