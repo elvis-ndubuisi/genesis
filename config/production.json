@@ -7,6 +7,14 @@
         "cryptoket": "https://cryptoket-nft.vercel.app",
         "salesprit": "https://salesprit.vercel.app"
     },
+    "cookieOpt": {
+        "domain": {
+            "salesprit": "https://salesprite.vercel.app"
+        },
+        "secure": true
+    },
     "accessTokenExp": "30m",
-    "refreshTokenExp": "1d"
+    "refreshTokenExp": "1d",
+    "accessTokenTTL": "1h",
+    "refreshTokenTTL": "2d"
 }

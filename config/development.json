@@ -8,6 +8,14 @@
         "cryptoket": "http://localhost:5173",
         "salesprit": "http://localhost:5173"
     },
+    "cookieOpt": {
+        "domain": {
+            "salesprit": "localhost"
+        },
+        "secure": false
+    },
     "accessTokenExp": "10m",
-    "refreshTokenExp": "30m"
+    "refreshTokenExp": "30m",
+    "accessTokenTTL": "10m",
+    "refreshTokenTTL": "30m"
 }

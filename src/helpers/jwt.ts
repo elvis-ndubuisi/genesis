@@ -16,8 +16,8 @@ export function signJwt(
     if (keyName === "jwtAccessSecret" || keyName === "jwtRefreshSecret")
         return jwt.sign(payload, config.get(keyName), { ...(options && options) });
 
-    const privateKey = config.get<string>(keyName);
-    return jwt.sign(payload, privateKey, { algorithm: "RS256", ...(options && options) });
+    const signingKey = Buffer.from(config.get<string>(keyName), "base64").toString("ascii");
+    return jwt.sign(payload, signingKey, { algorithm: "RS256", ...(options && options) });
 }
 
 /**
@@ -30,9 +30,13 @@ export function verifyJwt<T>(
     token: string,
     keyName: "accessTokenPublicKey" | "refreshTokenPublicKey" | "jwtRefreshSecret" | "jwtAccessSecret"
 ): T | null {
-    const publicKey = config.get<string>(keyName);
+    let publicKey = "";
 
-    // const publicKey = Buffer.from(config.get<string>(keyname), "base64").toString("ascii");
+    if (keyName === "jwtAccessSecret" || keyName === "jwtRefreshSecret") {
+        publicKey = config.get<string>(keyName);
+    } else {
+        publicKey = Buffer.from(config.get<string>(keyName), "base64").toString("ascii");
+    }
 
     try {
         const decoded = jwt.verify(token, publicKey) as T;

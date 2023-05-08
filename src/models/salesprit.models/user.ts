@@ -30,9 +30,9 @@ export class SalesUser {
     position!: string;
 
     //#region User schema class methods
-    async comparePassword(self: DocumentType<SalesUser>, incomingPassword: string) {
+    async comparePassword(this: DocumentType<SalesUser>, incomingPassword: string) {
         try {
-            return await argon2.verify(self.password, incomingPassword);
+            return await argon2.verify(this.password, incomingPassword);
         } catch (error: any) {
             return false;
         }

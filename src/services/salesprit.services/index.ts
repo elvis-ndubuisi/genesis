@@ -1,3 +1,3 @@
-import { createUserService } from "./user";
+import { createUserService, findUserByEmailService, findUserByIdService, updateUserService } from "./user";
 
-export { createUserService };
+export { createUserService, findUserByEmailService, findUserByIdService, updateUserService };

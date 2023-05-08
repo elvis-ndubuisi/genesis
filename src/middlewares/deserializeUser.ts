@@ -7,25 +7,15 @@ import lodash from "lodash";
  * attach verified token (i.e user) to res.locals
  */
 const deserializeUser = (req: Request, res: Response, next: NextFunction) => {
-    const accesstoken = lodash.get(req.cookies, "a-tk") || (req.headers.authorization || "").replace(/^Bearer\s/, "");
+    const accessToken = lodash.get(req.cookies, "access-token");
 
-    if (!accesstoken) return next();
+    if (!accessToken) return res.sendStatus(403);
 
-    const decoded = verifyJwt(accesstoken, "jwtRefreshSecret");
+    const decoded = verifyJwt(accessToken, "refreshTokenPublicKey");
+    if (decoded) {
+        res.locals.user = decoded;
+    }
+    return next();
 };
 
 export default deserializeUser;
-
-// import { Request, Response, NextFunction } from "express";
-
-// const fetchUser = (req: Request, res: Response, next: NextFunction) => {
-//     const user = res.locals.user;
-
-//     if (!user) {
-//         return res.sendStatus(403);
-//     }
-
-//     return next();
-// };
-
-// export default fetchUser;
