@@ -12,9 +12,11 @@ export const loginUserSchema = object({
 
 export const createNftSchema = object({
     body: object({
-        name: string({ required_error: "Nft name must be provided" }),
-        description: string({ required_error: "Provide a description" })
+        name: string({ required_error: "Nft name must be provided" })
             .min(10, "Minimum of 10 characters is required")
+            .max(20, "Maximum of 20 characters is required"),
+        description: string({ required_error: "Provide a description" })
+            .min(30, "Minimum of 30 characters is required")
             .max(80, "Maximum of 80 characters is allowed"),
         price: string({ required_error: "Price a price for your product" }),
         cryptoType: string({ required_error: "NFT type is required" }),
