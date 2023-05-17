@@ -12,7 +12,7 @@ export function fetchNftsService(limit: number, skip: number) {
 }
 
 export function fetchNftByIdService(nftId: string) {
-    return NftModel.findById(nftId);
+    return NftModel.findById(nftId).populate("author", "username");
 }
 
 export function fetchUserNftsService(authorId: string, { limit, skip }: { limit: number; skip: number }) {

@@ -58,7 +58,6 @@ async function fetchNftsHandler(req: Request<{}, {}, {}, FetchNftsInput>, res: R
 
 async function fetchNftHandler(req: Request<FetchNftInput, {}>, res: Response) {
     try {
-        console.log(req.params.nftId);
         const nft = await fetchNftByIdService(req.params.nftId);
         res.status(200).json({ nft });
     } catch (error: any) {
