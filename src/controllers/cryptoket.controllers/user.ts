@@ -70,13 +70,11 @@ export async function userNftsHandler(
 
     try {
         const nfts = await fetchUserNftsService(req.params.userId, { limit: limit, skip: skip });
-        res.status(200).json(
-            res.status(200).json({
-                page: page,
-                size: size,
-                data: nfts,
-            })
-        );
+        res.status(200).json({
+            page: page,
+            size: size,
+            data: nfts,
+        });
     } catch (error) {
         logger.error(error);
         res.sendStatus(500);
