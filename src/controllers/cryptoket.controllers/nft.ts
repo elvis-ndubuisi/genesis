@@ -7,7 +7,7 @@ import { CreateNftInput, FetchNftsInput, FetchNftInput } from "../../schemas/cry
 async function createNftHandler(req: Request<{}, {}, CreateNftInput>, res: Response) {
     const author = res.locals.user._id;
     try {
-        if (!req.file) return res.json({ message: "No image file" });
+        if (!req.file) return res.status(400).send("No image file");
         const cloudUri = await cloudinaryService(req.file.path, { folder: "cryptoket" });
         const nft = await createNftService(
             {
