@@ -14,8 +14,8 @@
         },
         "secure": false
     },
-    "accessTokenExp": "10m",
-    "refreshTokenExp": "30m",
+    "accessTokenExp": "5m",
+    "refreshTokenExp": "15m",
     "accessTokenTTL": "10m",
     "refreshTokenTTL": "30m"
 }
