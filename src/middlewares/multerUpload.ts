@@ -5,7 +5,7 @@ const multerUpload = multer({
     storage: multer.diskStorage({}),
     fileFilter(req, file, callback) {
         let ext = path.extname(file.originalname);
-        if (ext !== ".jpg" && ext !== ".jpeg" && ext !== ".png") {
+        if (ext !== ".jpg" && ext !== ".jpeg" && ext !== ".png" && ext !== ".gif" && ext !== ".webp") {
             callback(null, false);
             return;
         }
