@@ -5,7 +5,7 @@ import logger from "./logger";
 
 async function connectToMongo() {
     try {
-        const conn = await mongoose.connect(config.get<string>("mongoDb.Uri"), {
+        const conn = await mongoose.connect(config.get<string>("mongoUri"), {
             dbName: config.get<string>("mongoDb.Name"),
         });
         logger.info(`Connected: Mongo-Data-Source on: ${conn.connection.id}`);

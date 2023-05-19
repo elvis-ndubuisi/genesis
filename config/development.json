@@ -1,8 +1,7 @@
 {
     "port": 8080,
     "mongoDb": {
-        "Name": "genesis",
-        "Uri": "mongodb://localhost:27017"
+        "Name": "genesis"
     },
     "origin": {
         "cryptoket": "http://localhost:5173",
