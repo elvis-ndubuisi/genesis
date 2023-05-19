@@ -1,5 +1,4 @@
-import { DocumentType } from "@typegoose/typegoose";
-import { Nft, NftModel, nftPrivateFields } from "../../models/cryptoket.models";
+import { Nft, NftModel } from "../../models/cryptoket.models";
 
 export function fetchNftsService(limit: number, skip: number) {
     // return NftModel.find({}, {}, { limit: limit, skip: skip });
@@ -28,4 +27,8 @@ export function fetchUserNftsService(authorId: string, { limit, skip }: { limit:
 
 export function createNftService(nft: Partial<Nft>, authorId: string) {
     return NftModel.create({ ...nft, author: authorId });
+}
+
+export function findNftByName(name: string) {
+    return NftModel.findOne({ name: name.trim().toLowerCase() });
 }

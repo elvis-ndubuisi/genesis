@@ -1,12 +1,20 @@
 import { Request, Response } from "express";
 import logger from "../../helpers/logger";
 import cloudinaryService from "../../services/cloudinary.service";
-import { fetchNftByIdService, createNftService, fetchNftsService } from "../../services/cryptoket.services";
+import {
+    fetchNftByIdService,
+    createNftService,
+    fetchNftsService,
+    findNftByName,
+} from "../../services/cryptoket.services";
 import { CreateNftInput, FetchNftsInput, FetchNftInput } from "../../schemas/cryptoket.schemas";
 
 async function createNftHandler(req: Request<{}, {}, CreateNftInput>, res: Response) {
     const author = res.locals.user._id;
     try {
+        const duplicate = await findNftByName(req.body.name);
+        if (duplicate) return res.status(409).send("Nft name already exists");
+
         if (!req.file) return res.status(400).send("No image file");
         const cloudUri = await cloudinaryService(req.file.path, { folder: "cryptoket" });
         const nft = await createNftService(
