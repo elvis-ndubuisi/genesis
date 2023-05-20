@@ -5,7 +5,7 @@ import cryptoRoutes from "./cryptpket.routes";
 
 const router = express.Router();
 
-router.use(salesRoutes);
+// router.use(salesRoutes);
 router.use("/cryptoket", cryptoRoutes);
 router.get("/alive", (_, res: Response) => res.sendStatus(200));
 

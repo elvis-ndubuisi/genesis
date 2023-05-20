@@ -12,8 +12,12 @@ import { verifyJwt } from "../../helpers/jwt";
 
 export async function userRegisterHandler(req: Request<{}, {}, LoginUserInput>, res: Response) {
     try {
-        await createUserService(req.body);
-        res.status(201).send("You successfully registered");
+        let user = await createUserService(req.body);
+
+        // Sign tokens
+        const accessToken = signCryptoAccessTokenService(user);
+        const refreshToken = signCryptoRefreshTokenService({ userId: user.id, session: false });
+        res.status(201).json({ accessToken, refreshToken });
     } catch (error: any) {
         if (error?.code === 11000) {
             return res.status(409).send("Account already exists");

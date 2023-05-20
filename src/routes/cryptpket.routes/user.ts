@@ -9,7 +9,6 @@ import {
     userNftsHandler,
 } from "../../controllers/cryptoket.controllers";
 import { loginUserSchema, refreshTokenSchema, fetchUserNftsSchema } from "../../schemas/cryptoket.schemas";
-import deserializeUser from "../../middlewares/deserializeCrypto";
 
 const router = express.Router();
 
