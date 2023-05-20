@@ -1,5 +1,4 @@
 {
-    "port": 8080,
     "mongoDb": {
         "Name": "genesis"
     },
