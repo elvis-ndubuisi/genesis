@@ -32,10 +32,10 @@ export async function userLoginHandler(req: Request<{}, {}, LoginUserInput>, res
     try {
         const user = await findUserByNameService(username);
 
-        if (!user) return res.status(401).send("Invalid username or password");
+        if (!user) return res.status(403).send("Invalid username or password");
 
         const isValid = await user.checkPassword(password);
-        if (!isValid) return res.status(401).send("Invalid username or password");
+        if (!isValid) return res.status(403).send("Invalid username or password");
 
         // Sign tokens
         const accessToken = signCryptoAccessTokenService(user);
